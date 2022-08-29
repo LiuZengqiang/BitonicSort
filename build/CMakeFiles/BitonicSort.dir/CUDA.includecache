@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/sth/Code/LearnCUDA/BitonicSort/main.cu
+cstdio
+-
+random
+-
+ctime
+-
+iostream
+-
+cassert
+-
+cuda_runtime.h
+-
+driver_types.h
+-
+
