@@ -60,7 +60,7 @@ include CMakeFiles/BitonicSort.dir/flags.make
 CMakeFiles/BitonicSort.dir/main.cu.o: CMakeFiles/BitonicSort.dir/flags.make
 CMakeFiles/BitonicSort.dir/main.cu.o: ../main.cu
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sth/Code/LearnCUDA/BitonicSort/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CUDA object CMakeFiles/BitonicSort.dir/main.cu.o"
-	/usr/local/cuda/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -c /home/sth/Code/LearnCUDA/BitonicSort/main.cu -o CMakeFiles/BitonicSort.dir/main.cu.o
+	/usr/local/cuda/bin/nvcc  $(CUDA_DEFINES) $(CUDA_INCLUDES) $(CUDA_FLAGS) -x cu -dc /home/sth/Code/LearnCUDA/BitonicSort/main.cu -o CMakeFiles/BitonicSort.dir/main.cu.o
 
 CMakeFiles/BitonicSort.dir/main.cu.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CUDA source to CMakeFiles/BitonicSort.dir/main.cu.i"
