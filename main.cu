@@ -77,16 +77,20 @@ int main(){
 	int* data_h = nullptr;
 	int* data_d = nullptr;
 	size_t size = n * sizeof(int);
+	
 	std::cout<<"2. 申请内存空间."<<std::endl;
 	data_h = (int*)malloc(size);
 	checkCudaError(cudaMalloc((void**)&data_d, size));
+	
 	std::cout<<"3. 使用随机数初始化数组."<<std::endl;
 	std::srand(std::time(nullptr));
 	for(int i=0; i<n; i++){
 		data_h[i] = std::rand()%n;
 	}
+	
 	std::cout<<"4. 将数据复制到Device端."<<std::endl;
 	checkCudaError(cudaMemcpy(data_d, data_h, size, cudaMemcpyHostToDevice));
+	
 	std::cout<<"5. 开始在GPU段进行排序."<<std::endl;
 	for(int len=2; len<=n; len*=2){
 	// 自底向上，将长度为len的多段双调序列排好序
@@ -97,18 +101,21 @@ int main(){
 			int thread_num_per_block = 64;
 			int block_num_per_grid = (need_thread_num+thread_num_per_block-1)/thread_num_per_block;
 			bitonicSort<<<block_num_per_grid, thread_num_per_block>>>(data_d, n, len, d, need_thread_num);
-			checkCudaError(cudaDeviceSynchronize());
+			//checkCudaError(cudaDeviceSynchronize());
 		}
 		checkCudaError(cudaDeviceSynchronize());
 	}
+	
 	std::cout<<"6. 将排序好的数据复制回Host端."<<std::endl;
 	checkCudaError(cudaMemcpy(data_h, data_d, size, cudaMemcpyDeviceToHost));
+	
 	std::cout<<"7. 检查数组是否有序:"<<std::endl;
 	if(check(data_h, n)){
 		std::cout<<"数组已经有序(升序.)"<<std::endl;
 	}else{
 		std::cout<<"数组依旧乱序."<<std::endl;
 	}
+	
 	std::cout<<"8. 释放Host和Device端内存."<<std::endl;
 	delete[] data_h;
 	checkCudaError(cudaFree(data_d));
