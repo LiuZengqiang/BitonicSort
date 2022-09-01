@@ -1,2 +1,2 @@
-一个基于CUDA C++的**双调排序**实现.  
-复杂度为O(logn * logn).
+### 一个基于CUDA C++的**双调排序**实现.  
+### A code repository of Bitonic Sort on GPU using CUDA C++.
